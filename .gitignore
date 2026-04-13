@@ -9,11 +9,6 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Entornos virtuales (si llegas a usar uno)
-venv/
-env/
-.env
-
 # Archivos temporales o de sistema
 .DS_Store
 Thumbs.db
