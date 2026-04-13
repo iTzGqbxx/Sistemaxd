@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-wrapper">
+    <div class="glass-card wide-card">
+        <div class="header-section">
+            <h2>Llenar Documentos</h2>
+            <p>Por favor ingrese la información requerida</p>
+        </div>
+
+        <form method="POST" action="{{ url_for('documentos') }}" class="modern-form">
+            <div class="form-grid">
+                <div class="input-container full-width">
+                    <label for="tipo_documento">Tipo de Documento</label>
+                    <select id="tipo_documento" name="tipo_documento" required onchange="toggleLiteral()">
+                        <option value="">Seleccione una opción...</option>
+                        <option value="Registro de Planilla">Registro de Planilla</option>
+                        <option value="Registro de completación">Registro de completación</option>
+                    </select>
+                </div>
+
+                <div class="input-container">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Nombre del estudiante">
+                </div>
+
+                <div class="input-container">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" required placeholder="Apellido del estudiante">
+                </div>
+
+                <div class="input-container">
+                    <label for="ano_cursado">Año cursado</label>
+                    <input type="text" id="ano_cursado" name="ano_cursado" required placeholder="Ej: 3er Año">
+                </div>
+
+                <div class="input-container">
+                    <label for="cedula">Cédula de Identidad <small>(Usar puntos, Ej: 31.123.514)</small></label>
+                    <div class="input-with-prefix">
+                        <span class="prefix">V-</span>
+                        <input type="text" id="cedula" name="cedula" required placeholder="XX.XXX.XXX">
+                    </div>
+                </div>
+
+                <div class="input-container full-width hidden" id="literal-container">
+                    <label for="literal">Literal</label>
+                    <input type="text" id="literal" name="literal" placeholder="Calificación Literal">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Registrar Documento</button>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Volver al Inicio</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function toggleLiteral() {
+        const select = document.getElementById('tipo_documento');
+        const literalContainer = document.getElementById('literal-container');
+        const literalInput = document.getElementById('literal');
+        
+        if (select.value === 'Registro de completación') {
+            literalContainer.classList.remove('hidden');
+            literalInput.required = true;
+        } else {
+            literalContainer.classList.add('hidden');
+            literalInput.required = false;
+        }
+    }
+</script>
+{% endblock %}

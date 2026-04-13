@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="data-wrapper">
+    <div class="header-section">
+        <h2>Registros del Sistema</h2>
+        <p>Visualización de los datos almacenados en la base de datos</p>
+    </div>
+
+    <!-- Tabs para cambiar de vista -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('tab-documentos')">Registro de Documentos</button>
+        <button class="tab-btn" onclick="openTab('tab-inscripciones')">Inscripciones</button>
+    </div>
+
+    <div id="tab-documentos" class="tab-content active">
+        <div class="table-container glass-card">
+            <h3 class="section-title">Documentos Llenados</h3>
+            {% if documentos %}
+                <div class="table-responsive">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo</th>
+                                <th>Cédula</th>
+                                <th>Nombres</th>
+                                <th>Año</th>
+                                <th>Literal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for doc in documentos %}
+                            <tr>
+                                <td>{{ doc['id'] }}</td>
+                                <td><span class="badge">{{ doc['tipo_documento'] }}</span></td>
+                                <td>{{ doc['cedula'] }}</td>
+                                <td>{{ doc['nombre'] }} {{ doc['apellido'] }}</td>
+                                <td>{{ doc['ano_cursado'] }}</td>
+                                <td>{{ doc['literal'] if doc['literal'] else '-' }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <p>No hay documentos registrados aún.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="tab-inscripciones" class="tab-content">
+        <div class="table-container glass-card">
+            <h3 class="section-title">Estudiantes Inscritos</h3>
+            {% if inscripciones %}
+                <div class="table-responsive">
+                    <table class="modern-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cédula</th>
+                                <th>Estudiante</th>
+                                <th>Año</th>
+                                <th>Representante</th>
+                                <th>Teléfono Rep.</th>
+                                <th>Correo Rep.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ins in inscripciones %}
+                            <tr>
+                                <td>{{ ins['id'] }}</td>
+                                <td>{{ ins['cedula'] }}</td>
+                                <td>{{ ins['nombre'] }} {{ ins['apellido'] }}</td>
+                                <td>{{ ins['ano_cursado'] }}</td>
+                                <td>{{ ins['rep_nombre'] }} {{ ins['rep_apellido'] }}</td>
+                                <td>{{ ins['rep_telefono'] }}</td>
+                                <td>{{ ins['rep_correo'] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <p>No hay estudiantes inscritos aún.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTab(tabId) {
+        // Ocultar todos los contenidos de las pestañas
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => content.classList.remove('active'));
+
+        // Desmarcar todos los botones
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        // Mostrar el tab seleccionado y marcar su botón
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+</script>
+{% endblock %}

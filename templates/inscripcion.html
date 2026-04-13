@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-wrapper">
+    <div class="glass-card wide-card">
+        <div class="header-section">
+            <h2>Inscripción Estudiantil</h2>
+            <p>Complete los datos del estudiante y su representante</p>
+        </div>
+
+        <form method="POST" action="{{ url_for('inscripcion') }}" class="modern-form">
+            <h3 class="section-title">Datos del Estudiante</h3>
+            <div class="form-grid">
+                <div class="input-container">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Nombre del estudiante">
+                </div>
+
+                <div class="input-container">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" required placeholder="Apellido del estudiante">
+                </div>
+
+                <div class="input-container">
+                    <label for="ano_cursado">Año en el que cursará</label>
+                    <input type="text" id="ano_cursado" name="ano_cursado" required placeholder="Ej: 4to Año">
+                </div>
+
+                <div class="input-container">
+                    <label for="cedula">Cédula de Identidad <small>(Usar puntos, Ej: 31.123.514)</small></label>
+                    <div class="input-with-prefix">
+                        <span class="prefix">V</span>
+                        <input type="text" id="cedula" name="cedula" required placeholder="XX.XXX.XXX">
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="section-title mt-4">Datos del Representante</h3>
+            <div class="form-grid">
+                <div class="input-container">
+                    <label for="rep_nombre">Nombre</label>
+                    <input type="text" id="rep_nombre" name="rep_nombre" required
+                        placeholder="Nombre del representante">
+                </div>
+
+                <div class="input-container">
+                    <label for="rep_apellido">Apellido</label>
+                    <input type="text" id="rep_apellido" name="rep_apellido" required
+                        placeholder="Apellido del representante">
+                </div>
+
+                <div class="input-container">
+                    <label for="rep_correo">Correo electrónico</label>
+                    <input type="email" id="rep_correo" name="rep_correo" required placeholder="correo@ejemplo.com">
+                </div>
+
+                <div class="input-container">
+                    <label for="rep_telefono">Número telefónico</label>
+                    <input type="text" id="rep_telefono" name="rep_telefono" required placeholder="Ej: 0414-1234567">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Completar Inscripción</button>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Volver al Inicio</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

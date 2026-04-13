@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="header-section">
+        <h1>Panel Principal</h1>
+        <p>Seleccione la operación que desea realizar</p>
+    </div>
+
+    <div class="cards-grid">
+        <a href="{{ url_for('documentos') }}" class="glass-card module-card">
+            <div class="card-icon">📄</div>
+            <h3>Llenar Documentos</h3>
+            <p>Registro de Planilla o Completación</p>
+        </a>
+
+        <a href="{{ url_for('inscripcion') }}" class="glass-card module-card">
+            <div class="card-icon">🎓</div>
+            <h3>Inscripción Estudiantil</h3>
+            <p>Registrar nuevos estudiantes en el sistema</p>
+        </a>
+
+        <a href="{{ url_for('ver_datos') }}" class="glass-card module-card">
+            <div class="card-icon">🗃️</div>
+            <h3>Ver Registros</h3>
+            <p>Consultar estudiantes y documentos registrados</p>
+        </a>
+    </div>
+</div>
+{% endblock %}

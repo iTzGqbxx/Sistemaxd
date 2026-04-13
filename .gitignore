@@ -1,0 +1,19 @@
+# Base de datos local
+escuela.db
+*.db
+*.sqlite3
+
+# Archivos de caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entornos virtuales (si llegas a usar uno)
+venv/
+env/
+.env
+
+# Archivos temporales o de sistema
+.DS_Store
+Thumbs.db

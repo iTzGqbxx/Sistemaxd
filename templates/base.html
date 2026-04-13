@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Escolar E.B.N "General Rafael Urdaneta"</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="main-container">
+        {% if session.get('usuario') %}
+        <nav class="navbar">
+            <div class="nav-brand">Sistema Escolar E.B.N "General Rafael Urdaneta"</div>
+            <div class="nav-links">
+                <a href="{{ url_for('dashboard') }}" class="nav-item">Inicio</a>
+                <a href="{{ url_for('ver_datos') }}" class="nav-item">Registros Básicos</a>
+                <a href="{{ url_for('logout') }}" class="nav-item btn-logout">Cerrar Sesión</a>
+            </div>
+        </nav>
+        {% endif %}
+
+        <div class="content-wrapper">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+
+</html>
