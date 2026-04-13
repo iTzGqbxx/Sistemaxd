@@ -1,4 +1,4 @@
-# Sistema de Registro Escolar EBNGRU 🏫
+# Sistema automatizado para el tramite administrativo del E.B.N "General Rafael Urdaneta" 🏫
 
 Este es un sistema web diseñado en Python (utilizando Flask y SQLite) para gestionar el registro de estudiantes, representantes y documentos dentro la red local de la institución.
 
